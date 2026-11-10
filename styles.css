@@ -179,3 +179,62 @@ td, th { padding: 15px 13px; }
 }
 @media (max-width: 380px) { header { flex-wrap: wrap; } header .primary { width: 100%; } .month { width: 100%; } .pageheading { flex-wrap: wrap; gap: 12px; } .row strong { white-space: normal; max-width: 45%; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; } }
+
+/* Independent content columns avoid the empty space caused by shared rows. */
+.dashboard { display: grid; grid-template-columns: minmax(0, 2fr) minmax(290px, 1fr); gap: 18px; align-items: start; }
+.dashboard-main, .dashboard-side { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.dashboard-details { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.dashboard .panel { grid-column: auto; grid-row: auto; }
+.dashboard-details .division { grid-column: 1; grid-row: 1; }
+.dashboard-details .cardpanel { grid-column: 2; grid-row: 1; }
+.dashboard .tripbanner { flex-wrap: wrap; }
+.tripbanner > div { flex-basis: 180px; }
+.tripbanner > span { width: 44px; height: 44px; border-radius: 13px; }
+.dashboard .balance { padding-top: 20px; }
+.balance .paneltitle { min-height: 38px; }
+.balance .paneltitle > .art { width: 44px; height: 44px; border-width: 4px; border-radius: 14px; }
+.balance .art svg { width: 24px; height: 24px; }
+.balancevalue { margin-top: 4px; margin-bottom: 22px; }
+.income-shortcut { color: var(--blue); background: #edf2ff; font-size: 11px; font-weight: 600; border: 0; margin: -8px 0 18px; padding: 9px 13px; }
+.dark .income-shortcut { color: #bed0ff; background: #2b3d60; }
+.scrolllist { max-height: 265px; }
+.pageheading { padding-top: 23px; padding-bottom: 20px; }
+.overview-strip { margin-bottom: 18px; padding-top: 15px; padding-bottom: 15px; }
+aside { height: auto; max-height: calc(100dvh - 40px); overflow-y: auto; align-self: flex-start; margin-bottom: 20px; padding-bottom: 16px; }
+.brand { padding-bottom: 28px; }
+.sidebarbottom { margin-top: 22px; padding-top: 12px; border-top: 1px solid var(--border); }
+.profile { padding-top: 16px; margin-top: 10px; }
+nav { gap: 5px; }
+nav button { padding-top: 12px; padding-bottom: 12px; }
+.row strong { white-space: normal; flex-shrink: 0; max-width: 48%; }
+.month select { text-transform: none; }
+@media (min-width: 1450px) { .dashboard .panel { padding: 23px; } .row { padding-top: 13px; padding-bottom: 13px; } }
+@media (min-width: 701px) and (max-width: 1100px) {
+  .dashboard { grid-template-columns: minmax(0, 1.35fr) minmax(250px, 1fr); gap: 14px; }
+  .dashboard-main, .dashboard-side { gap: 14px; }
+  .dashboard-details { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .dashboard-details .division, .dashboard-details .cardpanel { grid-column: 1; grid-row: auto; }
+  .balancevalue { font-size: 28px; }
+  .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+  .chips button { font-size: 9px; }
+  .overview-strip { gap: 10px; }
+}
+@media (max-width: 700px) {
+  aside { max-height: none; overflow: visible; margin: 0; padding-bottom: 10px; }
+  .brand { padding-bottom: 14px; }
+  .sidebarbottom { display: block; position: absolute; top: 13px; right: 15px; margin: 0; padding: 0; border: 0; }
+  .sidebarbottom .profile, .sidebarbottom > button span { display: none; }
+  .sidebarbottom > button { width: 38px; height: 38px; justify-content: center; padding: 8px; border: 1px solid var(--border); border-radius: 12px; }
+  aside { position: relative; }
+  .dashboard { display: flex; flex-direction: column; gap: 16px; }
+  .dashboard-main, .dashboard-side, .dashboard-details { display: contents; }
+  .dashboard .balance { order: 0; }
+  .dashboard .payable { order: 1; }
+  .dashboard .division { order: 2; }
+  .dashboard .cardpanel { order: 3; }
+  .dashboard .housing { order: 4; }
+  .dashboard .tripbanner { order: 5; }
+  .dashboard .panel { width: 100%; }
+  .pageheading { padding-top: 20px; padding-bottom: 17px; }
+  .scrolllist { max-height: 300px; }
+}
