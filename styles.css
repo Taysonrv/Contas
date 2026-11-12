@@ -238,3 +238,67 @@ nav button { padding-top: 12px; padding-bottom: 12px; }
   .pageheading { padding-top: 20px; padding-bottom: 17px; }
   .scrolllist { max-height: 300px; }
 }
+
+/* Monthly analysis and mobile navigation */
+.mobile-only, .mobile-nav { display: none; }
+.spending .paneltitle button { color: var(--blue); border: 0; font-size: 11px; }
+.spending-chart { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 24px; margin-top: 16px; }
+.spending-ring { width: 144px; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; }
+.spending-ring > div { width: 76%; aspect-ratio: 1; border-radius: 50%; background: var(--panel); display: grid; place-content: center; text-align: center; }
+.spending-ring strong { font-size: 15px; }
+.spending-ring small { margin-top: 3px; }
+.spending-legend { display: grid; gap: 12px; }
+.spending-legend > div { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 5px 8px; align-items: center; font-size: 12px; }
+.spending-legend span::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--category); margin-right: 6px; }
+.spending-legend small, .spending-legend progress { grid-column: 1 / -1; }
+.spending-legend progress::-webkit-progress-value { background: var(--category); }
+.spending-legend progress::-moz-progress-bar { background: var(--category); }
+.activity-filters { display: flex; gap: 8px; }
+.activity-filters:empty { display: none; }
+.activity-filters button { font-size: 12px; border-radius: 999px; }
+.activity-filters button[aria-pressed=true] { background: var(--blue); border-color: var(--blue); color: white; }
+@media (max-width: 700px) {
+  :root { --blue: #087960; }
+  body { background: #f4f7f8; }
+  body.dark { background: #101927; --blue: #5fc8a6; }
+  #app > aside { border-radius: 0; background: transparent; box-shadow: none; padding-bottom: 0; }
+  #app > aside > nav, .wide-only, .pageheading small, .pageheading .sourcebadge, #add, .overview-strip { display: none; }
+  .mobile-only { display: block; }
+  .brandicon { background: #087960; box-shadow: none; }
+  main { padding: 10px 16px calc(88px + env(safe-area-inset-bottom)); }
+  header { min-height: 44px; padding: 5px 8px; border-color: var(--border); box-shadow: none; }
+  .month select { max-width: none; }
+  .pageheading { padding: 16px 1px 14px; }
+  .pageheading h1 { margin: 0; font-size: 27px; }
+  .dashboard .balance { background: radial-gradient(ellipse at 100% 100%, #1b9867, transparent 60%), linear-gradient(125deg,#08735e,#063e37); border: 0; color: #fff; box-shadow: 0 10px 24px #0c74552a; }
+  .dashboard .balance .paneltitle, .balancevalue > span, .balance .metrics small { color: #d4eee5; }
+  .balance .paneltitle > .art { background: #ffffff20; border: 0; color: #fff; transform: none; }
+  .balance .metrics, .balance .stack { display: none; }
+  .balancevalue { font-size: clamp(24px, 7vw, 36px); margin-bottom: 8px; }
+  .balancevalue.negative { color: #ffd8d8; }
+  .balance .income-shortcut { color: white; background: #ffffff24; margin: 7px 0 0; }
+  .mobile-metrics { order: 1; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 10px; width: 100%; }
+  .mobile-metrics > div { background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 13px 10px; display: flex; align-items: center; gap: 7px; font-size: 10px; color: var(--muted); }
+  .mobile-metrics svg { color: var(--blue); width: 19px; }
+  .mobile-metrics strong { display: block; font-size: 14px; margin-top: 4px; color: inherit; }
+  .dashboard .spending { order: 2; }
+  .dashboard .payable { order: 3; }
+  .dashboard .division { order: 4; }
+  .dashboard .cardpanel { order: 5; }
+  .dashboard .housing { order: 6; }
+  .dashboard .tripbanner { order: 7; }
+  .spending-chart { gap: 12px; }
+  .spending-ring { width: clamp(105px, 33vw, 144px); }
+  .spending-ring strong { font-size: 12px; }
+  .spending-ring small { font-size: 9px; }
+  .spending-legend > div { font-size: 11px; }
+  .mobile-nav { position: fixed; z-index: 5; bottom: 0; left: 0; right: 0; background: var(--panel); border: 1px solid var(--border); border-radius: 20px 20px 0 0; display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); align-items: center; padding: 8px 10px calc(8px + env(safe-area-inset-bottom)); box-shadow: 0 -6px 26px #102a4310; }
+  .mobile-nav button, .mobile-nav summary { display: grid; justify-items: center; gap: 4px; width: 100%; border: 0; padding: 6px 3px; font-size: 10px; color: var(--muted); cursor: pointer; }
+  .mobile-nav button span, .mobile-nav summary span { width: auto; font-size: inherit; color: inherit; }
+  .mobile-nav button[aria-current=page] { color: var(--blue); font-weight: 700; }
+  #mobile-add { width: 43px; height: 43px; border-radius: 50%; justify-self: center; place-content: center; padding: 0; background: #087960; color: white; font-size: 29px; }
+  .mobile-more { position: absolute; bottom: calc(64px + env(safe-area-inset-bottom)); right: 12px; background: var(--panel); border: 1px solid var(--border); border-radius: 14px; box-shadow: 0 10px 32px #102a4326; padding: 6px; }
+  .mobile-more button { display: flex; align-items: center; gap: 9px; padding: 11px; font-size: 12px; }
+  #results .row { border: 1px solid var(--border); border-radius: 13px; margin-top: 7px; padding: 10px; }
+  .activity-filters { margin-bottom: 13px; }
+}
